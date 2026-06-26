@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpineSlice Image Viewer</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #202124; color: #e8eaed; font: 14px/1.4 Segoe UI, Arial, sans-serif; }
+    .bar { position: fixed; inset: 0 0 auto 0; height: 44px; display: flex; align-items: center; gap: 16px; padding: 0 14px; background: #111315; border-bottom: 1px solid #3c4043; z-index: 2; }
+    .label { color: #9aa0a6; }
+    .path { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .stage { min-height: 100%; padding-top: 44px; display: grid; place-items: center; background-color: #777; background-image: linear-gradient(45deg, #aaa 25%, transparent 25%), linear-gradient(-45deg, #aaa 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #aaa 75%), linear-gradient(-45deg, transparent 75%, #aaa 75%); background-size: 32px 32px; background-position: 0 0, 0 16px, 16px -16px, -16px 0px; }
+    img { max-width: 96vw; max-height: calc(96vh - 44px); image-rendering: auto; box-shadow: 0 0 0 1px rgba(0,0,0,.35), 0 18px 60px rgba(0,0,0,.35); background: transparent; }
+  </style>
+</head>
+<body>
+  <div class="bar"><span class="label">Image</span><span class="path" id="path"></span></div>
+  <main class="stage"><img id="img" alt="review image"></main>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const src = params.get('src') || '';
+    document.getElementById('path').textContent = decodeURIComponent(src);
+    document.getElementById('img').src = src;
+  </script>
+</body>
+</html>
